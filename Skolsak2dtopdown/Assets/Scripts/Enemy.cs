@@ -16,8 +16,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
-        rigidbody.MovePosition(rigidbody.position + direction * enemySpeed * Time.fixedDeltaTime);
-            
+        if(player != null) {
+            Vector2 direction = (player.position - transform.position).normalized;
+            rigidbody.MovePosition(rigidbody.position + direction * enemySpeed * Time.fixedDeltaTime);
+        }    
     }
 }

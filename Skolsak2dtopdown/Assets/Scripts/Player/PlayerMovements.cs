@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class NewBehaviourScript : MonoBehaviour
 {
     Vector2 moveInput;
+    Vector2 screenBoundery;
     Rigidbody2D rigidBody;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float rotationSpeed = 5f;
@@ -23,12 +24,13 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveInput != Vector2.zero){
+        
             rigidBody.velocity = moveInput * moveSpeed; 
             Quaternion targetRotation = Quaternion.LookRotation(transform.forward, moveInput);
             Quaternion rotate = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         
             rigidBody.MoveRotation(rotate);
-        }
+       screenBoundery = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+       transform.position = new Vector2(Mathf.Clamp(transform.position.x, -screenBoundery.x, screenBoundery.x), Mathf.Clamp(transform.position.y, -screenBoundery.y, screenBoundery.y));
     }
 }
