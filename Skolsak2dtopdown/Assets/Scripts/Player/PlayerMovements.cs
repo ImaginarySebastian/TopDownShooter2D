@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class NewBehaviourScript : MonoBehaviour
+
 {
     Vector2 moveInput;
     Vector2 screenBoundery;
@@ -18,6 +18,7 @@ public class NewBehaviourScript : MonoBehaviour
     
         moveInput = value.Get<Vector2>();
     }
+    
 
 
 
